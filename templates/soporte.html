@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .content {
+            margin-top: 70px;
+        }
+
+        h1 {
+            color: #0000ff;
+            font-size: 24px;
+        }
+
+        .faq-container {
+            max-width: 600px;
+            margin: auto;
+            text-align: left;
+        }
+
+        .question {
+            color: #0000ff;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        {% include 'menu.html' %}
+        <div class="header">
+            <img src="https://i.postimg.cc/L6mKtYd0/logo-pagina-b.png" alt="Logo">
+        </div>
+    <h1>Preguntas Frecuentes</h1>
+
+    <div class="faq-container">
+        
+        <div class="question">
+            <img src="{{ url_for('static', filename='pregunta.png') }}" alt="Pregunta Icon">¿Cuáles son los pasos a seguir para obtener buenos resultados fotográficos?
+        </div>
+        <p>Hemos preparado un video explicativo que muestra cómo debes cargar apropiadamente las imágenes de los rostros de las personas. El mismo video explica cómo seleccionar el modelo de diseño que utilizarás. Todo está detallado en el video, sin embargo, si tienes preguntas adicionales puedes contactarnos por nuestros canales de comunicación oficiales, recibirás respuesta en horario de atención. Consulta para saber más en www.propicart.com/terminos</p>
+
+        <div class="question">
+            <img src="{{ url_for('static', filename='pregunta.png') }}" alt="Pregunta Icon">¿Qué hago para obtener fotos mas parecidas a las originales?
+        </div>
+        <p>Te recomendamos seguir los pasos del video, usar foto donde el rostro se vea bien, con todos sus rasgos, sin elementos que lo tapen, se debe ver completo. Recuerda que los rostros se deben subir individualmente tal como se explica en el video.</p>
+
+        <div class="question">
+            <img src="{{ url_for('static', filename='pregunta.png') }}" alt="Pregunta Icon">¿En qué países brindan sus servicios?
+        </div>
+        <p>Brindamos nuestro servicio digital en todos los países. Por el momento solo en idioma español.</p>
+
+        <div class="question">
+            <img src="{{ url_for('static', filename='pregunta.png') }}" alt="Pregunta Icon">¿Utilizan inteligencia artificial para crear las fotografías?
+        </div>
+        <p>Sí, utilizamos inteligencia artificial para crear las fotografías finales, estos resultados son montajes digitales de los rostros que se hayan cargado. Para obtener un buen resultado final sigue las instrucciones que aparecen en cada sección de la plataforma.</p>
+
+        <div class="question">
+            <img src="{{ url_for('static', filename='pregunta.png') }}" alt="Pregunta Icon">¿Qué política de devolución tienen?
+        </div>
+        <p>En Propicart queremos que estés satisfecho con los resultados, es por ello que asesoramos en cada paso necesario. Puedes contactarnos por nuestros canales de atención, recibirás respuesta dentro del horario de atención. Realizamos devoluciones en caso no te brindemos código de acceso al servicio (puedes visitar www.propicart.com/terminos para conocer más sobre nuestras políticas de devolución)</p>
+
+
+        <div class="question">
+            <img src="{{ url_for('static', filename='pregunta.png') }}" alt="Pregunta Icon">Deseo obtener un plan para poder vender el servicio con mi marca personal ¿Cómo hago?
+        </div>
+        <p>Tenemos disponibles paquetes para empresas, con excelentes descuentos y adaptados a tu marca. Consulta más en www.propicart.com/comprar</p>
+
+        <div class="question">
+            <img src="{{ url_for('static', filename='pregunta.png') }}" alt="Pregunta Icon">¿Guardan en alguna memoria las fotografías que subo o las que se crean en la plataforma?
+        </div>
+        <p>Luego de que cierras el navegador se eliminan automáticamente las fotografías que hayas subido y las que se hayan creado, es por ello que debes descargar los resultados finales antes de cerrar tu navegador. Consulta para saber más en www.propicart.com/terminos</p>
+    </div>
+</div>
+</body>
+</html>

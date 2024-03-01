@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Actualizaciones de Propicart</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .content {
+            margin-top: 70px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 20px;
+        }
+
+        .update {
+            margin-bottom: 20px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .update img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .update-date {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .intro-text {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .intro-text,
+            .update {
+                font-size: 16px;
+            }
+
+            .update img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        {% include 'menu.html' %}
+        <div class="header">
+            <img src="https://i.postimg.cc/L6mKtYd0/logo-pagina-b.png" alt="Logo">
+        </div>
+    
+    <h1>Actualizaciones de Propicart</h1>
+
+    <div class="intro-text">
+        <p>Propicart está pensado por fotógrafos y creado por ingenieros informáticos. Antes de la creación del servicio web, los diseños artísticos y los montajes digitales eran creados con herramientas como Photoshop, de forma manual y costosa. Antes las sesiones fotográficas se realizaban en un estudio o al aire libre, de manera tradicional. Nuestra intención siempre ha sido estar a la vanguardia y acompañar este arte visual con los avances pertinentes para hacer más accesible el servicio a todas las personas. Nuestro objetivo es que las sesiones fotográficas creadas con IA sean el futuro de la fotografía de sesiones.</p>
+    </div>
+
+    <div class="update">
+        <img src="/static/crear.png" alt="Icono Actualización">
+        <div>
+            <div class="update-date">10/08/2023</div>
+            <p>Hemos implementado nuestro servicio a través de servidores. Ahora los diseños fotográficos son creados con herramientas basadas en inteligencia artificial.</p>
+        </div>
+    </div>
+
+    <div class="update">
+        <img src="/static/crear.png" alt="Icono Actualización">
+        <div>
+            <div class="update-date">24/11/2023</div>
+            <p>Hemos añadido la posibilidad de que nuestros clientes accedan a la creación de diseños fotográficos de varias personas juntas (llamado sesión familiar), hasta 5 personas juntas.</p>
+        </div>
+    </div>
+
+    <div class="update">
+        <img src="/static/crear.png" alt="Icono Actualización">
+        <div>
+            <div class="update-date">1/12/2023</div>
+            <p>Actualización de modelos a más de 1000 diseños disponibles. Incluyendo ahora temáticas de navidad y año nuevo.</p>
+        </div>
+    </div>
+
+    <div class="update">
+        <img src="/static/crear.png" alt="Icono Actualización">
+        <div>
+            <div class="update-date">3/01/2024</div>
+            <p>Añadimos más temáticas disponibles: Vintage, Gestantes, New born, etc.</p>
+        </div>
+    </div>
+
+    <div class="update">
+        <img src="/static/crear.png" alt="Icono Actualización">
+        <div>
+            <div class="update-date">22/01/2024</div>
+            <p>Implementamos una mejora en el modelo de entrenamiento de los datos en que se basa nuestra inteligencia artificial para que los resultados finales se acerquen más al parecido de los rostros originales.</p>
+        </div>
+    </div>
+
+    <div class="update">
+        <img src="/static/crear.png" alt="Icono Actualización">
+        <div>
+            <div class="update-date">01/02/2024</div>
+            <p>Agregamos más temáticas relacionadas al día del amor, enamorados y parejas.</p>
+        </div>
+    </div>
+
+    <div class="update">
+        <img src="/static/crear.png" alt="Icono Actualización">
+        <div>
+            <div class="update-date">20/02/2024</div>
+            <p>Agregamos paquetes para empresas, para que otras marcas o personas puedan utilizar nuestros servidores para vender el servicio digital bajo su propio nombre.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

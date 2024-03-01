@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lightbox Gallery</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+        <style>
+            body {
+                margin: 0;
+                background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(128, 0, 128, 0.5));
+                height: 100vh;
+                font-family: "Open Sans", sans-serif;
+                color: white;
+                padding: 10px;
+            }
+            .content {
+                margin-top: 70px;
+            }
+    
+            .my-button {
+                padding: 8px 16px;
+                background-color: #ff7f00;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-family: 'Futura', sans-serif;
+                font-size: 1.2em;
+                align-self: center;
+                display: block;
+                margin: 20px auto; /* Centrar el botón */
+            }
+    
+            .my-button:hover {
+                background-color: #e06900; /* Cambiar color al pasar el ratón */
+            }
+    
+            .my-button:active {
+                background-color: #cc5c00; /* Cambiar color al hacer clic */
+            }
+    
+            .container {
+                max-width: 800px;
+                margin: 5% auto;
+                padding: 20px;
+                background-color: black;
+                border-radius: 10px;
+                overflow: hidden;
+                box-sizing: border-box;
+                box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+            }
+    
+            .header {
+                text-align: center;
+                margin-bottom: 1em;
+            }
+    
+            .header img {
+                max-width: 100%;
+                height: auto;
+            }
+    
+            .lightbox-gallery {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin: -10px;
+            }
+    
+            .lightbox-gallery div {
+                margin: 10px;
+                flex-basis: calc(25% - 20px);
+            }
+    
+            .lightbox-gallery div > img {
+                max-width: 100%;
+                display: block;
+            }
+    
+            .title-container {
+                text-align: center;
+                line-height: 1; /* Reducido aún más el espacio entre líneas */
+                max-width: 600px;
+                margin: 0 auto;
+            }
+    
+            h2.text-center {
+                color: #ff7f00;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1.5em;
+                margin-top: 0.5em;
+                position: relative;
+                animation: shine 2s infinite;
+            }
+    
+            h2.text-center::after {
+                content: "|";
+                display: inline-block;
+                animation: cursor 0.8s infinite;
+            }
+    
+            @keyframes shine {
+                0% {
+                    color: #ff7f00;
+                }
+                50% {
+                    color: #fff;
+                }
+                100% {
+                    color: #ff7f00;
+                }
+            }
+    
+            @keyframes cursor {
+                0%, 100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+            }
+    
+            @media only screen and (max-width: 767px) {
+                .lightbox-gallery div {
+                    flex-basis: calc(33.33% - 20px);
+                }
+            }
+    
+            .footer {
+                text-align: center;
+                margin-top: 10px;
+            }
+    
+            .github-link {
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 18px;
+                text-decoration: none;
+            }
+    
+            .github-link:hover,
+            .github-link:active,
+            .github-link:visited {
+                color: #fff;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+        {% include 'menu.html' %}
+        <div class="header">
+            <img src="https://i.postimg.cc/L6mKtYd0/logo-pagina-b.png" alt="Logo">
+        </div>
+    
+        <div class="title-container">
+            <h2 class="text-center">Tu sesión fotográfica<br>creada con inteligencia artificial</h2>
+        </div>
+        
+        <!-- Botón que redirige a seleccion_estilo.html -->
+        <button class="my-button" id="crearFotografiasBtn">Crear Fotografías</button>
+    </div>
+<script>
+    document.getElementById('crearFotografiasBtn').addEventListener('click', function() {
+        window.location.href = "{{ url_for('seleccion_estilo') }}";
+    });
+</script>
+
+    
+    <div class="container">
+        <div class="lightbox-gallery">
+            <div><img src="https://i.postimg.cc/3wLk6ynX/a-redimensionada.jpg" alt="Descripción de la imagen a"></div>
+            <div><img src="https://i.postimg.cc/SR9jJgqd/c-redimensionada.png" alt="Descripción de la imagen c"></div>
+            <div><img src="https://i.postimg.cc/gcLxS2Rh/d-redimensionada.png" alt="Descripción de la imagen d"></div>
+            <div><img src="https://i.postimg.cc/15xfL1cj/f-redimensionada.png" alt="Descripción de la imagen f"></div>
+            <div><img src="https://i.postimg.cc/7ZwbZ1R1/h-redimensionada.png" alt="Descripción de la imagen h"></div>
+            <div><img src="https://i.postimg.cc/MTNv6CkX/i-redimensionada.png" alt="Descripción de la imagen i"></div>
+            <div><img src="https://i.postimg.cc/k554xJqB/k-redimensionada.png" alt="Descripción de la imagen k"></div>
+            <div><img src="https://i.postimg.cc/cJ5JhpLT/l-redimensionada.png" alt="Descripción de la imagen l"></div>
+            <div><img src="https://i.postimg.cc/d3GtqDmS/n-redimensionada.png" alt="Descripción de la imagen n"></div>
+            <div><img src="https://i.postimg.cc/NjdGG3mY/q-redimensionada.png" alt="Descripción de la imagen q"></div>
+            <div><img src="https://i.postimg.cc/T3dY6dyC/r-redimensionada.png" alt="Descripción de la imagen r"></div>
+            <div><img src="https://i.postimg.cc/DydyHJzS/s-redimensionada.png" alt="Descripción de la imagen s"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a class="github-link" href="https://www.propicart.com/terminos" target="_blank">Propicart 2024 - Términos y condiciones</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var title = document.querySelector('.text-center');
+            var text = title.innerText;
+            title.innerText = '';
+
+            function type() {
+                title.innerText = text.slice(0, i++);
+                if (i <= text.length) {
+                    setTimeout(type, 100);
+                }
+            }
+
+            var i = 0;
+            type();
+        });
+    </script>
+</body>
+</html>

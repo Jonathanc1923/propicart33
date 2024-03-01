@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccione un estilo para su fotografía</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding-top: 70px;
+            text-align: center;
+        }
+        
+        .content {
+            margin-top: 70px;
+        }
+        
+        h1 {
+            color: #ff7f00;
+            margin-top: 20px;
+        }
+        
+        a {
+            display: block;
+            padding: 10px;
+            margin: 8px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #ff7f00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.4s ease;
+        }
+        
+        a:hover {
+            background-color: #e06900;
+        }
+        
+        a:active {
+            background-color: #cc5c00;
+        }
+        
+        .my-button {
+            padding: 8px 16px;
+            background-color: #ff7f00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Futura', sans-serif;
+            font-size: 1.2em;
+            align-self: center;
+            display: block;
+            margin: 20px auto;
+        }
+        
+        .my-button:hover {
+            background-color: #e06900;
+        }
+        
+        .my-button:active {
+            background-color: #cc5c00;
+        }
+        
+        .terminos {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        #video-container {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        
+        #local-video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        @media only screen and (min-width: 768px) {
+            #video-container {
+                max-width: 20%;
+                margin: 0 auto;
+            }
+        
+            #local-video {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    {% include 'menu.html' %}
+    <div class="content">
+    <img src="https://i.postimg.cc/L6mKtYd0/logo-pagina-b.png" alt="Logo">
+    <h1>IMPORTANTE: Vea el siguiente video explicativo</h1>
+    <div id="video-container">
+        <video id="local-video" controls>
+            <source src="{{ url_for('static', filename='Professional Pic- Pltaforma explicativo diseñosbajar.mp4') }}" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+    
+    <p><img src="{{ url_for('static', filename='info.png') }}" alt="Información" style="width: 32px; height: 32px;">Antes de utilizar esta plataforma, mira el video que está arriba</p>
+    </div>
+    
+    <a href="{{ url_for('disenos_una_persona') }}">Diseños para 1 persona</a>
+    <a href="{{ url_for('disenos_una_persona2') }}">Diseños para 2 personas</a>
+    <a href="{{ url_for('disenos_una_persona3') }}">Diseños para 3 personas</a>
+    <a href="{{ url_for('disenos_una_persona4') }}">Diseños para 4 personas</a>
+    <a href="{{ url_for('disenos_una_persona5') }}">Diseños para 5 personas</a>
+</div>
+</body>
+</html>
