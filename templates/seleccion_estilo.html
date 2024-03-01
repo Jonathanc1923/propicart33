@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
@@ -12,19 +13,23 @@
             background-color: #000;
             color: #fff;
             margin: 0;
-            padding-top: 70px;
+            padding-top: 50px;
             text-align: center;
         }
-        
+
         .content {
-            margin-top: 70px;
+            margin-top: 50px;
+            padding-top: 20px;
+            margin: 0 auto;
+            max-width: 80%;
         }
-        
+
         h1 {
             color: #ff7f00;
             margin-top: 20px;
+            font-size: 1.5em;
         }
-        
+
         a {
             display: block;
             padding: 10px;
@@ -36,18 +41,19 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.4s ease;
+            font-size: 1.2em;
         }
-        
+
         a:hover {
             background-color: #e06900;
         }
-        
+
         a:active {
             background-color: #cc5c00;
         }
-        
+
         .my-button {
-            padding: 8px 16px;
+            padding: 10px 20px;
             background-color: #ff7f00;
             color: white;
             border: none;
@@ -55,69 +61,67 @@
             cursor: pointer;
             font-family: 'Futura', sans-serif;
             font-size: 1.2em;
-            align-self: center;
             display: block;
             margin: 20px auto;
         }
-        
+
         .my-button:hover {
             background-color: #e06900;
         }
-        
+
         .my-button:active {
             background-color: #cc5c00;
         }
-        
+
         .terminos {
             text-align: center;
             margin-top: 10px;
         }
-        
+
         #video-container {
-            max-width: 80%;
-            margin: 0 auto;
-        }
-        
-        #local-video {
+            position: relative;
             width: 100%;
-            height: auto;
-            display: block;
+            height: 0;
+            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
         }
-        
-        @media only screen and (min-width: 768px) {
+
+        #youtube-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media only screen and (max-width: 768px) {
             #video-container {
-                max-width: 20%;
-                margin: 0 auto;
-            }
-        
-            #local-video {
-                width: 100%;
-                height: auto;
-                display: block;
+                padding-bottom: 75%; /* Adjust the aspect ratio for mobile */
             }
         }
-        
     </style>
 </head>
+
 <body>
     {% include 'menu.html' %}
     <div class="content">
-    <img src="https://i.postimg.cc/L6mKtYd0/logo-pagina-b.png" alt="Logo">
-    <h1>IMPORTANTE: Vea el siguiente video explicativo</h1>
-    <div id="video-container">
-        <video id="local-video" controls>
-            <source src="{{ url_for('static', filename='Professional Pic- Pltaforma explicativo diseñosbajar.mp4') }}" type="video/mp4">
+        <img src="https://i.postimg.cc/L6mKtYd0/logo-pagina-b.png" alt="Logo">
+        <h1>IMPORTANTE: Vea el siguiente video explicativo</h1>
+        <div id="video-container">
+            <iframe id="youtube-video" src="https://www.youtube.com/embed/FW7HFv_Qx8Q?si=4GOkC5hE2EnbamGj"
+                frameborder="0" allowfullscreen></iframe>
             Tu navegador no soporta el elemento de video.
-        </video>
-    
-    <p><img src="{{ url_for('static', filename='info.png') }}" alt="Información" style="width: 32px; height: 32px;">Antes de utilizar esta plataforma, mira el video que está arriba</p>
+        </div>
+
+        <p><img src="{{ url_for('static', filename='info.png') }}" alt="Información"
+                style="width: 32px; height: 32px;">Antes de utilizar esta plataforma, mira el video que está
+            arriba</p>
     </div>
-    
     <a href="{{ url_for('disenos_una_persona') }}">Diseños para 1 persona</a>
     <a href="{{ url_for('disenos_una_persona2') }}">Diseños para 2 personas</a>
     <a href="{{ url_for('disenos_una_persona3') }}">Diseños para 3 personas</a>
     <a href="{{ url_for('disenos_una_persona4') }}">Diseños para 4 personas</a>
     <a href="{{ url_for('disenos_una_persona5') }}">Diseños para 5 personas</a>
-</div>
+    </div>
 </body>
+
 </html>

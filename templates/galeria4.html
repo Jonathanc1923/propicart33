@@ -158,28 +158,33 @@
 
           
             
+        #video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            /* Aspect ratio 16:9 */
+            margin: 0 auto;
+            max-width: 80%;
+        }
+
+        #youtube-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        p {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        @media only screen and (max-width: 768px) {
             #video-container {
-                max-width: 80%;
-                margin: 0 auto;
-            }
-            
-            #local-video {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-            
-            @media only screen and (min-width: 768px) {
-                #video-container {
-                    max-width: 20%; /* Puedes ajustar este valor según tus necesidades */
-                    margin: 0 auto;
-                }
-            
-                #local-video {
-                    width: 100%;
-                    height: auto;
-                    display: block;
-                }
+                padding-bottom: 75%;
+                /* Adjust the aspect ratio for mobile */
             }
             
             
@@ -193,10 +198,9 @@
         <p><img src="{{ url_for('static', filename='info.png') }}" alt="Información" style="width: 20px; height: 20px;">IMPORTANTE: Antes de utilizar esta plataforma, mira el siguiente video </p>
 
         <div id="video-container">
-            <video id="local-video" controls>
-                <source src="{{ url_for('static', filename='Professional Pic- Pltaforma explicativo diseñosbajar.mp4') }}" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
+            <iframe id="youtube-video" src="https://www.youtube.com/embed/FW7HFv_Qx8Q?si=4GOkC5hE2EnbamGj" frameborder="0"
+                allowfullscreen></iframe>
+            Tu navegador no soporta el elemento de video.
         </div>
         <p><img src="{{ url_for('static', filename='info2.png') }}" alt="Información" style="width: 20px; height: 20px;">Antes de utilizar esta plataforma, mira el video que está arriba</p>
         <div class="uploaded-images" id="uploadedImages"></div>
