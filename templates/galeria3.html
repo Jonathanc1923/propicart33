@@ -268,7 +268,7 @@
             {% for imagefilename in image_paths %}
                 <div class="image-container">
                     <a href="{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='triles/reducido/' + imagefilename) }}" alt="Image" onclick="procesarImagen('{{ imagefilename }}')">
+                        <img src="{{ url_for('static', filename='triples/reducido/' + imagefilename) }}" alt="Image" onclick="procesarImagen('{{ imagefilename }}')">
                     </a>
                 </div>
             {% endfor %}
