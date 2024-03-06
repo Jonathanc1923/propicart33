@@ -62,7 +62,8 @@
     </style>
 </head>
 <body>
-    <h1>Ya casi está listo! Espera 30 segundos y luego presiona el botón</h1>
+    {% include 'menu.html' %}
+    <h1>Ya casi está listo! Espera 30 segundos y luego presiona el botón verde</h1>
     <!-- Agrega un formulario con un campo de entrada de archivo -->
     
    
@@ -78,7 +79,7 @@
 
     <!-- Mostrar el botón directamente -->
     <div id="resultButton">
-        <p><a href="{{ url_for('imagen_final') }}">Ver Imagen Final</a></p>
+        <p><a href="{{ url_for('imagen_final') }}">Presiona aquí para obtener el resultado</a></p>
     </div>
 </body>
 </html>

@@ -22,6 +22,7 @@ from pprint import pprint
 import requests
 
 
+
 app = Flask(__name__)
 codigouser = None
 
@@ -307,15 +308,7 @@ def imagen_final():
         
         return render_template('imagen_final.html', result_image=result_image_name)
     else:
-        return " En 15 segundos Actualiza o recarga esta página sin cerrarla - ERROR: Los rostros no fueron cargados o no esperaste a que el sistema los cargue - Recuerda que antes de seleccionar un diseño debes cargar correctamente las caras de las personas tal como se indica en el video de inicio de la plataforma! Si no sigues los pasos detallados no obtendrás buenos resultados."
-
-    
-    
-    
-    
-    
-    
-    
+        return render_template('error.html')
     
     
     
@@ -574,24 +567,45 @@ def procesar():
     # Obtener la ruta de la imagen del fotocalendario
     calendario_path = os.path.join('static', 'calendario.png')
     
-    # Crear una copia de la imagen resultante para no sobrescribir la original
+        # Crear una copia de la imagen resultante para no sobrescribir la original
     img_resultante = cv2.imread(result_image)
     img_resultante_copy = img_resultante.copy()
 
+    # Obtener el tamaño de la imagen resultante
+    height, width, _ = img_resultante_copy.shape
+
     # Redimensionar la imagen del fotocalendario al tamaño deseado (1000x1000 px)
     calendario = cv2.imread(calendario_path)
-    calendario_resized = cv2.resize(calendario, (1000, 1000))
+
+        # Redimensionar la imagen del fotocalendario al tamaño deseado (1000x1000 px)
+    calendario = cv2.imread(calendario_path)
+
+
+     # Obtener la ruta de la imagen de la postal de San Valentín
+    calendario_path = os.path.join('static', 'calendario.png')
+
+    # Crear una copia de la imagen de la postal de San Valentín
+    san_valentin = cv2.imread(calendario_path)
+    san_valentin_copy = san_valentin.copy()
+
+    # Redimensionar la imagen resultante al tamaño deseado (500x500 px)
+    img_resultante = cv2.imread(result_image)
+    img_resultante_resized = cv2.resize(img_resultante, (500, 500))
     codigouser = session['codigouser']
-    # Obtener el espacio central en el fotocalendario para incrustar la imagen resultante
-    centro_x = int((1000 - 500) / 2)
-    centro_y = int((1000 - 500) / 2)
+    # Obtener la posición central en la postal de San Valentín para incrustar la imagen final
+    centro_x_san_valentin = int((1000 - 500) / 2)
+    centro_y_san_valentin = int((1000 - 500) / 2)
 
-    # Incrustar la imagen resultante en el fotocalendario
-    calendario_resized[centro_y:centro_y + 500, centro_x:centro_x + 500] = img_resultante_copy
+    # Incrustar la imagen final en la postal calendario
+    san_valentin_copy[centro_y_san_valentin:centro_y_san_valentin + 500, centro_x_san_valentin:centro_x_san_valentin + 500] = img_resultante_resized
 
-    # Guardar la nueva imagen resultante con el fotocalendario
+    # Guardar la nueva imagen resultante con la postal de San Valentín
     resultado_con_calendario_path = os.path.join('static', 'resultado_con_calendario.jpg')
-    cv2.imwrite(resultado_con_calendario_path, calendario_resized)
+    cv2.imwrite(resultado_con_calendario_path, san_valentin_copy)
+    
+
+
+
     
     # Obtener la ruta de la imagen de la postal de San Valentín
     san_valentin_path = os.path.join('static', 'amor.png')
@@ -614,6 +628,7 @@ def procesar():
     # Guardar la nueva imagen resultante con la postal de San Valentín
     resultado_con_san_valentin_path = os.path.join('static', 'resultado_con_san_valentin.jpg')
     cv2.imwrite(resultado_con_san_valentin_path, san_valentin_copy)
+    
 
 
     
