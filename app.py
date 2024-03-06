@@ -83,7 +83,7 @@ except FileNotFoundError:
     codigos_validos = {}
 
 
-limite_validaciones = 70  # Establece el límite de validaciones permitidas
+limite_validaciones = 170  # Establece el límite de validaciones permitidas
 
 # Diccionario para almacenar la lista negra de códigos
 lista_negra = defaultdict(int)
