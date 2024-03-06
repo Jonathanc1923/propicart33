@@ -16,6 +16,91 @@
             padding-top: 50px;
             text-align: center;
         }
+        #chat-container {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: block;
+            z-index: 1000;
+        }
+        
+        #chat-header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 6px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        #chat-icon {
+            width: 85px;
+            height: 40px;
+        }
+        
+        #chat-body {
+            padding: 10px;
+        }
+        
+        #chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .user-message {
+            font-size: 14px;
+            background-color: #3498db;
+            color: #000; /* Cambia el color del texto del cliente (negro en este caso) */
+            padding: 5px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            text-align: right; /* Alinea el texto del cliente a la derecha */
+        }
+        
+        .bot-message {
+            font-size: 14px;
+            background-color: #f1f1f1;
+            color: #000; /* Cambia el color del texto del bot (negro en este caso) */
+            padding: 5px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            text-align: left; /* Alinea el texto del bot a la izquierda */
+        }
+        
+        #chat-input {
+            display: flex;
+            margin-top: 10px;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        #chat-input button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #toggleChatBtn {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        #toggleChatBtn img {
+            width: 20px;
+            height: 20px;
+        }
 
         .content {
             margin-top: 50px;
@@ -104,6 +189,18 @@
 <body>
     {% include 'menu.html' %}
     <div class="content">
+        <div id="chat-container">
+            <div id="chat-header">
+                <img src="{{ url_for('static', filename='chat.png') }}" alt="Chat Icon" id="chat-icon" onclick="toggleChat()">
+            </div>
+            <div id="chat-body">
+                <div id="chat-messages"></div>
+                <div id="chat-input">
+                    <input type="text" id="user-input" placeholder="Escribe tu mensaje..." onkeydown="sendMessage(event)">
+                    <button onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
         <img src="https://i.postimg.cc/L6mKtYd0/logo-pagina-b.png" alt="Logo">
         <h1>IMPORTANTE: Vea el siguiente video explicativo</h1>
         <div id="video-container">
@@ -121,7 +218,97 @@
     <a href="{{ url_for('disenos_una_persona3') }}">Diseños para 3 personas</a>
     <a href="{{ url_for('disenos_una_persona4') }}">Diseños para 4 personas</a>
     <a href="{{ url_for('disenos_una_persona5') }}">Diseños para 5 personas</a>
+    <footer style="background-color: #333; color: #fff; padding: 10px; text-align: center;">
+        <p>Derechos de autor © 2024 Propicart. Todos los derechos reservados.</p>
+    </footer>
+    <div style="height: 150px;"></div>
     </div>
+    
+
+    <script>
+        console.log("Script JavaScript ejecutándose correctamente.");
+    
+        var isChatOpen = false;
+    
+        function toggleChat() {
+            var chatBody = document.getElementById('chat-body');
+            isChatOpen = !isChatOpen;
+    
+            if (isChatOpen) {
+                chatBody.style.display = 'block';
+                fetchResponse('¡Hola! ¿En qué puedo ayudarte?');
+            } else {
+                chatBody.style.display = 'none';
+            }
+        }
+    
+        function sendMessage(event) {
+            if (event && event.key !== 'Enter') {
+                return;
+            }
+    
+            var userInput = document.getElementById('user-input').value;
+            var chatMessages = document.getElementById('chat-messages');
+    
+            // Agrega el mensaje del usuario al chat
+            chatMessages.innerHTML += '<div class="user-message">' + userInput + '</div>';
+    
+            // Limpia el campo de entrada
+            document.getElementById('user-input').value = '';
+    
+            // Simula la respuesta del bot con un retraso y puntos suspensivos
+            showBotTyping();
+    
+            setTimeout(function () {
+                // Procesa el mensaje y obtén la respuesta
+                var response = processMessage(userInput);
+    
+                // Oculta los puntos suspensivos después de mostrar la respuesta
+                hideBotTyping();
+    
+                // Agrega la respuesta al chat
+                chatMessages.innerHTML += '<div class="bot-message">' + response + '</div>';
+    
+                // Desplaza el chat automáticamente hacia la última respuesta
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 5000);
+        }
+    
+        function showBotTyping() {
+            var chatMessages = document.getElementById('chat-messages');
+            chatMessages.innerHTML += '<div class="bot-message typing">...</div>';
+        }
+    
+        function hideBotTyping() {
+            var chatMessages = document.getElementById('chat-messages');
+            var botTypingIndicator = chatMessages.querySelector('.bot-message.typing');
+            if (botTypingIndicator) {
+                botTypingIndicator.outerHTML = ''; // Elimina el elemento de puntos suspensivos
+            }
+        }
+    
+        function processMessage(message) {
+            // Simulación de respuestas del bot
+            if (message.toLowerCase().includes('hola', "buen día", "buenas tardes", "buenas noches", "que tal")) {
+                return '¡Hola!, ¿cómo puedo ayudarte?';
+            } else if (message.toLowerCase().includes('error', "eror", "problema")) {
+                return 'Si te sale un mensaje de error es porque no estás cargando correctamente los rostros o las fotos de los rostros no son adecuadas. Asegurate de cargar las fotos INDIVIDUALMENTE y que el rostro se vea completo de frente. Sigue estos pasos: Cuando ingreses a la página, verás un video explicativo de 5 minutos. Ahí se detalla cómo cargar tus fotos en la página y descargar los diseños finales. También puedes acceder al video en el siguiente link <a href="https://www.youtube.com/watch?v=FW7HFv_Qx8Q&ab_channel=professionalPic" target="_blank">https://www.youtube.com/watch?v=FW7HFv_Qx8Q&ab_channel=professionalPic</a>. Los diseños son generados por nuestro sistema, no los crearás tú. Debes seguir los pasos del video para obtener un trabajo ordenado. Está diseñado así para que puedas elegir los diseños que más te gusten.';
+            } else if (message.toLowerCase().includes('devolución', "devolucion", "dinero")) {
+                return 'Lamentamos los inconvenientes. En términos y condiciones del servicio se detalla en qué casos se puede proceder a una devolución. Le invitamos a su lectura www.propicart.com/terminos. En caso considere que su caso está contemplado en casos de devolución, puede enviar evidencia, capturas de pantalla o archivos como prueba al correo professionalpic14@gmail.com, donde un asesor analizará su caso y le indicará si procede devolución';
+            } else if (message.toLowerCase().includes("servidor", "server")) {
+                return 'Por favor, vuelve a intentarlo más tarde (aprox. en 1 hora) ya que nuestro servidor está en mantenimiento';
+            } else if (message.toLowerCase().includes("rostros", "rostro", "cara", "orden")) {
+                return 'Los rostros se deben cargar de izquierda a derecha en cualquiera de los diseños. Sigue estos pasos: Cuando ingreses a la página, verás un video explicativo de 5 minutos. Ahí se detalla cómo cargar tus fotos en la página y descargar los diseños finales. Los diseños son generados por nuestro sistema, no los crearás tú. Debes seguir los pasos del video para obtener un trabajo ordenado. Está diseñado así para que puedas elegir los diseños que más te gusten.';
+            } else if (message.toLowerCase().includes("comprar", "vender")) {
+                return 'Si deseas comprar otro paquete u obtener alguna oferta en especial, comunica al correo professionalpic14@gmail.com';
+            } else if (message.toLowerCase().includes("video")) {
+                return ' Sigue estos pasos: Cuando ingreses a la página, verás un video explicativo de 5 minutos. Ahí se detalla cómo cargar tus fotos en la página y descargar los diseños finales. También puedes acceder al video en el siguiente link <a href="https://www.youtube.com/watch?v=FW7HFv_Qx8Q&ab_channel=professionalPic" target="_blank">https://www.youtube.com/watch?v=FW7HFv_Qx8Q&ab_channel=professionalPic</a>. Debes seguir los pasos del video para obtener un trabajo ordenado.';
+            } else {
+                return 'Por favor deja tu consulta detallando el problema por este chat. Si deseas una respuesta más detallada, puedes escribirnos por correo professionalpic14@gmail.com';
+            }
+        }
+    </script>
+
 </body>
 
 </html>
