@@ -27,6 +27,14 @@
             display: block;
             z-index: 1000;
         }
+        #creditosRestantesContainer {
+            color: #4CAF50; /* Color verde llamativo */
+            font-weight: bold; /* Texto en negrita */
+            font-family: 'Arial', sans-serif; /* Tipo de letra (puedes ajustar según tus preferencias) */
+            font-size: 16px; /* Tamaño del texto (ajusta según tus preferencias) */
+            margin-top: 20px; /* Ajusta según tu diseño */
+        }
+        
         
         #chat-header {
             background-color: #3498db;
@@ -295,7 +303,9 @@
         
         <img src="https://i.postimg.cc/L6mKtYd0/logo-pagina-b.png" alt="Logo">
         <p><img src="{{ url_for('static', filename='info.png') }}" alt="Información" style="width: 20px; height: 20px;">IMPORTANTE: Antes de utilizar esta plataforma, mira el siguiente video </p>
-
+        <div id="creditosRestantesContainer">
+            <p>Créditos Restantes: <span id="creditosRestantes">{{ creditos_restantes }}</span></p>
+        </div>
         <div id="video-container">
             <iframe id="youtube-video" src="https://www.youtube.com/embed/FW7HFv_Qx8Q?si=4GOkC5hE2EnbamGj" frameborder="0"
                 allowfullscreen></iframe>
@@ -396,23 +406,28 @@
                 console.error('Error al obtener los códigos válidos:', error);
             });
 
-        function validarCodigo() {
-            var codigo = document.getElementById("codigo").value;
-            
-            fetch('/validar_codigo/' + codigo)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        document.getElementById("lockScreen").style.display = "none";
-                        document.getElementById("gallery").style.display = "flex";
-                    } else {
-                        alert("Código no válido. Intente nuevamente o compre más créditos");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al validar el código:', error);
-                });
-        }
+            function validarCodigo() {
+                var codigo = document.getElementById("codigo").value;
+        
+                fetch('/validar_codigo/' + codigo)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            // Actualiza la variable creditos_restantes en el HTML
+                            creditos_restantes = data.creditos_restantes;
+                            document.getElementById("creditosRestantes").innerText = creditos_restantes;
+        
+                            document.getElementById("lockScreen").style.display = "none";
+                            document.getElementById("gallery").style.display = "flex";
+                        } else {
+                            alert("Código no válido. Intente nuevamente o compre más créditos");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al validar el código:', error);
+                    });
+            }
+        
 
         function displayUploadedImages() {
             var input = document.getElementById('imageInput');

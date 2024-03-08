@@ -93,37 +93,37 @@ def validar_codigo(codigo):
     global codigos_validos, lista_negra
 
     codigouser = generarnumero()
-    print ("MI CODIGOUSER ES", codigouser)
+    print("MI CODIGOUSER ES", codigouser)
     session['user'] = codigouser
     session['codigouser'] = codigouser
     if os.path.join('uploads', codigouser):
-        # Si el directorio existe, lo eliminamos.
         try:
             shutil.rmtree(os.path.join('uploads', codigouser))
             print(f"Carpeta eliminada exitosamente.")
         except OSError as e:
-            print(f"No se pudo eliminar la carpeta . Error: {e}")
+            print(f"No se pudo eliminar la carpeta. Error: {e}")
     else:
-        print(f"La carpeta {os.path.join('uploads', codigouser)} no existe aun.")
+        print(f"La carpeta {os.path.join('uploads', codigouser)} no existe aún.")
+
     if codigo in codigos_validos:
         if codigos_validos[codigo] < limite_validaciones:
             # Incrementa el contador
             codigos_validos[codigo] += 1
             # Imprime el estado actual de la cuenta
             print(f"Código {codigo} validado {codigos_validos[codigo]} veces.")
-            # Devuelve éxito
-            return jsonify({'status': 'success', 'message': 'Código válido'})
+            
+            # Devuelve éxito junto con la información de créditos restantes
+            return jsonify({'status': 'success', 'message': 'Código válido', 'creditos_restantes': limite_validaciones - codigos_validos[codigo]})
         else:
             # Excede el límite de validaciones
             if codigo not in lista_negra:
                 lista_negra[codigo] = 1
                 # Imprime el estado actual de la cuenta
                 print(f"Código {codigo} agregado a la lista negra.")
-            return jsonify({'status': 'error', 'message': 'Código ha alcanzado el límite de validaciones'})
+            return jsonify({'status': 'error', 'message': 'Código ha alcanzado el límite de validaciones', 'creditos_restantes': 0})
     else:
         # Código no válido
-        return jsonify({'status': 'error', 'message': 'Código no válido'})
-
+        return jsonify({'status': 'error', 'message': 'Código no válido', 'creditos_restantes': 0})
 
 
 
