@@ -4,3 +4,5 @@ w600k_r50.onnx filter=lfs diff=lfs merge=lfs -text
 *.onnx filter=lfs diff=lfs merge=lfs -text
 * text=auto eol=lf
 static/Professional[[:space:]]Pic-[[:space:]]Pltaforma[[:space:]]explicativo[[:space:]]diseñosbajar.mp4 filter=lfs diff=lfs merge=lfs -text
+codigos.json -text
+
